@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Welcome, <%= username %>!</h1>
+  <h2>Images (<%= nImages %>)</h2>
+  <ul>
+    <% for (let i of images) { %>
+      <li>
+        <!-- Each image is clickable and links to the detail page -->
+        <a href="/detail?_id=<%= i._id %>">
+          <img src="/uploads/<%= i.filename %>" alt="<%= i.imageid %>" width="200">
+        </a>
+      </li>
+    <% } %>
+  </ul>
+  <br>
+  <a href="/create">Upload New Image</a>
+  <br><br>
+  <form action="/logout" method="GET">
+    <button type="submit">Logout</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    // Automatically redirect to login page after 1 second
+    setTimeout(function() {
+      window.location.href = '/login';
+    }, 1000);
+  </script>
+  <style>
+    /* Override styles for the logout link */
+    a {
+      text-decoration: underline; /* Default link styling */
+      color: #007bff; /* Default link color */
+      background: none; /* No background */
+      padding: 0; /* No padding */
+      border-radius: 0; /* No border radius */
+      box-shadow: none; /* No box shadow */
+    }
+
+    a:hover {
+      color: #0056b3; /* Hover color */
+      text-decoration: underline; /* Keep underline on hover */
+    }
+  </style>
+</head>
+<body>
+  <h1><%= username %>, you have successfully logged out.</h1>
+  <p>Redirecting to the login page...</p>
+  <p>If you are not redirected automatically, <a href="/login">click here</a>.</p>
+</body>
+</html>

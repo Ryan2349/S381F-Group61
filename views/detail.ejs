@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Detail</title>
+  <link rel="stylesheet" href="/css/detail.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Image Details</h1>
+    
+    <!-- Display the image -->
+    <img src="/uploads/<%= image.filename %>" alt="<%= image.imageid %>" width="400">
+
+    <!-- Image ID -->
+    <p><strong>Image ID:</strong> <%= image.imageid %></p>
+
+    <!-- Image Format -->
+    <p><strong>Image Format:</strong> <%= image.filename.split('.').pop().toUpperCase() %></p>
+    
+    <!-- Description -->
+    <p><strong>Description:</strong> <%= image.description %></p>
+
+    <!-- Edit button -->
+    <a href="/edit?_id=<%= image._id %>">
+      <button>Edit</button>
+    </a>
+    <br>
+
+    <!-- Delete button -->
+    <form action="/delete?_id=<%= image._id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this image?');">
+      <button type="submit">Delete</button>
+    </form>
+    <br>
+
+    <!-- Download button -->
+    <a href="/download?_id=<%= image._id %>">
+      <button>Download Image</button>
+    </a>
+    <br>
+
+    <!-- Back to home -->
+    <a href="/">Back to Home</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Image</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    function checkDescriptionLength() {
+      const description = document.getElementById('description');
+      const charCount = document.getElementById('charCount');
+      const maxLength = 50;
+
+      // Update the character count
+      charCount.textContent = `${description.value.length}/${maxLength}`;
+
+      // Prevent input if the length exceeds the limit
+      if (description.value.length > maxLength) {
+        description.value = description.value.substring(0, maxLength);
+        charCount.textContent = `${maxLength}/${maxLength}`;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Edit Image</h1>
+  <form action="/edit" method="POST" enctype="multipart/form-data">
+    <!-- Pass the image ID as a hidden field -->
+    <input type="hidden" name="_id" value="<%= image._id %>">
+
+    <label for="imageid">Image ID:</label>
+    <input type="text" id="imageid" name="imageid" value="<%= image.imageid %>" required>
+    <br><br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" maxlength="50" oninput="checkDescriptionLength()" required><%= image.description %></textarea>
+    <p id="charCount"><%= image.description.length %>/50</p>
+    <br><br>
+
+    <label for="image">Change Image:</label>
+    <input type="file" id="image" name="image" accept="image/*">
+    <br><br>
+
+    <button type="submit">Save Changes</button>
+  </form>
+  <br>
+  <a href="/detail?_id=<%= image._id %>">Cancel</a>
+</body>
+</html>

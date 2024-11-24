@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Image</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    function checkDescriptionLength() {
+      const description = document.getElementById('description');
+      const charCount = document.getElementById('charCount');
+      const maxLength = 50;
+
+      // Update the character count
+      charCount.textContent = `${description.value.length}/${maxLength}`;
+
+      // Prevent input if the length exceeds the limit
+      if (description.value.length > maxLength) {
+        description.value = description.value.substring(0, maxLength);
+        charCount.textContent = `${maxLength}/${maxLength}`;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Upload a New Image</h1>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <label for="imageid">Image ID:</label>
+    <input type="text" id="imageid" name="imageid" required><br><br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" maxlength="50" oninput="checkDescriptionLength()"></textarea>
+    <p id="charCount">0/50</p>
+    <br>
+    <label for="image">Select Image:</label>
+    <input type="file" id="image" name="image" accept="image/*" required><br><br>
+
+    <button type="submit">Upload</button>
+  </form>
+  <a href="/">Back to Home</a>
+</body>
+</html>
